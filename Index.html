@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistics Master Revision — Complete Study Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --ink: #1a1a2e;
+    --paper: #fdfcf7;
+    --cream: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #f0d89a;
+    --blue-deep: #0f3460;
+    --blue-mid: #1b6ca8;
+    --blue-light: #ddeeff;
+    --green-deep: #0a5c36;
+    --green-mid: #1a8c55;
+    --green-light: #d4f5e3;
+    --red-deep: #7a1c1c;
+    --red-mid: #c0392b;
+    --red-light: #fde8e8;
+    --amber-deep: #7a4400;
+    --amber-mid: #d4821a;
+    --amber-light: #fef3d0;
+    --purple-deep: #3d1a6e;
+    --purple-mid: #7b52ab;
+    --purple-light: #ede8f8;
+    --border: #d4c9a8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* ── PRINT BUTTON ── */
+  .print-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--blue-deep);
+    padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .print-bar span { color: var(--gold-light); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .print-btn {
+    background: var(--gold); color: var(--ink); border: none;
+    padding: 8px 24px; border-radius: 4px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 13px;
+    letter-spacing: 1px; transition: all .2s;
+  }
+  .print-btn:hover { background: var(--gold-light); }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--blue-deep) 0%, #0a2040 50%, #1a1040 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 60px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(27,108,168,0.15) 0%, transparent 50%);
+  }
+  .cover-badge {
+    background: var(--gold); color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 20px; border-radius: 2px; margin-bottom: 32px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900; color: #fff;
+    line-height: 1.1; margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover p.subtitle {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    max-width: 600px; margin: 0 auto 40px;
+    font-style: italic;
+  }
+  .cover-stats {
+    display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;
+    margin-top: 40px;
+  }
+  .cover-stat {
+    text-align: center;
+  }
+  .cover-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900; color: var(--gold);
+    display: block;
+  }
+  .cover-stat .lbl {
+    color: rgba(255,255,255,0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 1px;
+  }
+  .cover-divider {
+    width: 60px; height: 3px;
+    background: var(--gold);
+    margin: 32px auto;
+  }
+  .chapters-list {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    max-width: 700px;
+  }
+  .chapter-pill {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(201,168,76,0.3);
+    color: rgba(255,255,255,0.8);
+    padding: 6px 16px; border-radius: 20px;
+    font-size: 13px; font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── LAYOUT ── */
+  .wrapper { max-width: 960px; margin: 0 auto; padding: 60px 32px; }
+
+  /* ── CHAPTER HEADERS ── */
+  .chapter {
+    margin: 80px 0 40px;
+    padding-top: 40px;
+    border-top: 3px solid var(--gold);
+  }
+  .chapter-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .chapter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: var(--ink);
+    line-height: 1.2;
+  }
+  .chapter p.intro {
+    margin-top: 16px; font-size: 16px;
+    color: #444; max-width: 680px;
+    border-left: 4px solid var(--gold);
+    padding-left: 20px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--blue-deep);
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h4 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px; font-weight: 600;
+    color: var(--ink); margin: 24px 0 10px;
+  }
+
+  /* ── DEFINITION BOXES ── */
+  .def-box {
+    background: var(--paper); border: 1px solid var(--border);
+    border-left: 5px solid var(--blue-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px; margin: 20px 0;
+  }
+  .def-box .term {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--blue-mid);
+    margin-bottom: 6px;
+  }
+  .def-box p { color: var(--ink); }
+
+  /* ── FORMULA BOXES ── */
+  .formula {
+    background: var(--purple-light);
+    border: 1px solid var(--purple-mid);
+    border-radius: 8px; padding: 20px 28px;
+    margin: 20px 0; text-align: center;
+  }
+  .formula .f {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px; font-weight: 600;
+    color: var(--purple-deep); display: block; margin-bottom: 8px;
+  }
+  .formula .note {
+    font-size: 13px; color: var(--purple-mid);
+    font-style: italic;
+  }
+
+  /* ── INFO CARDS ── */
+  .card-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 20px 0; }
+  .card {
+    border-radius: 10px; padding: 20px;
+    border: 1px solid transparent;
+  }
+  .card.blue { background: var(--blue-light); border-color: var(--blue-mid); }
+  .card.green { background: var(--green-light); border-color: var(--green-mid); }
+  .card.red { background: var(--red-light); border-color: var(--red-mid); }
+  .card.amber { background: var(--amber-light); border-color: var(--amber-mid); }
+  .card.purple { background: var(--purple-light); border-color: var(--purple-mid); }
+  .card.cream { background: var(--cream); border-color: var(--border); }
+  .card h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .card.blue h5 { color: var(--blue-deep); }
+  .card.green h5 { color: var(--green-deep); }
+  .card.red h5 { color: var(--red-deep); }
+  .card.amber h5 { color: var(--amber-deep); }
+  .card.purple h5 { color: var(--purple-deep); }
+  .card p, .card li { font-size: 14px; color: var(--ink); }
+  .card ul { padding-left: 18px; }
+  .card ul li { margin-bottom: 4px; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .alert .icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .alert.tip { background: var(--green-light); border: 1px solid var(--green-mid); }
+  .alert.warn { background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .alert.key { background: var(--purple-light); border: 1px solid var(--purple-mid); }
+  .alert.trap { background: var(--red-light); border: 1px solid var(--red-mid); }
+
+  /* ── TABLES ── */
+  .tbl-wrap { overflow-x: auto; margin: 20px 0; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: var(--blue-deep); }
+  thead th {
+    padding: 12px 16px; text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 1px;
+    color: #fff; font-weight: 600;
+  }
+  tbody tr:nth-child(even) { background: var(--blue-light); }
+  tbody tr:nth-child(odd) { background: var(--paper); }
+  tbody td { padding: 10px 16px; font-size: 14px; border-bottom: 1px solid var(--border); }
+  tfoot tr { background: var(--gold-light); }
+  tfoot td { padding: 10px 16px; font-size: 14px; font-weight: 600; border-top: 2px solid var(--gold); }
+
+  /* ── WORKED EXAMPLE ── */
+  .example {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+    margin: 24px 0;
+  }
+  .example-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; padding-bottom: 14px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .example-badge {
+    background: var(--gold); color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 2px;
+    padding: 4px 12px; border-radius: 3px;
+    white-space: nowrap;
+  }
+  .example-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--ink);
+  }
+  .step {
+    display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start;
+  }
+  .step-num {
+    background: var(--blue-deep); color: #fff;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-body { flex: 1; }
+  .step-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 1px; color: var(--blue-mid);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .math {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--ink);
+    background: rgba(0,0,0,0.04); padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .result-box {
+    background: var(--green-light); border: 2px solid var(--green-mid);
+    border-radius: 8px; padding: 16px 20px; margin-top: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .result-box .res-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 2px; color: var(--green-deep); text-transform: uppercase;
+  }
+  .result-box .res-val {
+    font-family: 'JetBrains Mono', monospace; font-size: 22px;
+    font-weight: 600; color: var(--green-deep);
+  }
+
+  /* ── DISTRIBUTION DIAGRAM ── */
+  .dist-container { margin: 20px 0; }
+  .dist-svg-wrap { width: 100%; overflow: hidden; border-radius: 8px; }
+
+  /* ── Q&A SECTION ── */
+  .qa-section {
+    background: var(--paper);
+    border-radius: 12px; border: 1px solid var(--border);
+    overflow: hidden; margin: 20px 0;
+  }
+  .qa-header {
+    background: var(--blue-deep); padding: 14px 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .qa-mark {
+    background: var(--gold); color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600; letter-spacing: 1px;
+    padding: 4px 10px; border-radius: 3px;
+  }
+  .qa-header h4 {
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: 17px; margin: 0;
+    border: none; padding: 0;
+  }
+  .qa-body { padding: 20px 24px; }
+  .qa-question {
+    font-style: italic; color: var(--blue-deep);
+    font-size: 15px; margin-bottom: 14px;
+    padding-left: 16px;
+    border-left: 3px solid var(--gold);
+  }
+  .qa-answer p { margin-bottom: 10px; }
+  .qa-answer ul { padding-left: 20px; margin-bottom: 10px; }
+  .qa-answer ul li { margin-bottom: 6px; }
+
+  /* ── DECISION TREE ── */
+  .decision-tree {
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px; margin: 20px 0;
+  }
+  .dt-node {
+    background: var(--blue-deep); color: #fff;
+    border-radius: 8px; padding: 12px 20px;
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; margin: 0 auto 4px;
+    display: inline-block;
+  }
+  .dt-row { display: flex; justify-content: center; gap: 20px; margin: 8px 0; flex-wrap: wrap; }
+  .dt-branch { text-align: center; flex: 1; min-width: 160px; }
+  .dt-arrow { text-align: center; color: var(--gold); font-size: 20px; margin: 4px 0; }
+  .dt-leaf {
+    border-radius: 8px; padding: 12px 16px;
+    font-size: 13px; text-align: center;
+  }
+  .dt-leaf.green { background: var(--green-light); border: 1px solid var(--green-mid); color: var(--green-deep); }
+  .dt-leaf.blue { background: var(--blue-light); border: 1px solid var(--blue-mid); color: var(--blue-deep); }
+  .dt-leaf.red { background: var(--red-light); border: 1px solid var(--red-mid); color: var(--red-deep); }
+  .dt-label { font-size: 12px; color: var(--gold); font-family: 'JetBrains Mono', monospace; margin-bottom: 4px; }
+
+  /* ── ERROR TABLE ── */
+  .error-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px; margin: 20px 0; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .eg-header { background: var(--blue-deep); color: #fff; padding: 12px 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .eg-row-label { background: var(--cream); padding: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--border); font-size: 14px; }
+  .eg-correct { background: var(--green-light); padding: 16px; text-align: center; border: 1px solid var(--green-mid); font-size: 14px; color: var(--green-deep); }
+  .eg-error { border-radius: 4px; padding: 16px; text-align: center; border: 2px solid; font-size: 14px; }
+  .eg-t1 { background: var(--red-light); border-color: var(--red-mid); color: var(--red-deep); }
+  .eg-t2 { background: var(--amber-light); border-color: var(--amber-mid); color: var(--amber-deep); }
+  .eg-cell-title { font-weight: 700; margin-bottom: 4px; }
+
+  /* ── ANOVA TABLE ── */
+  .anova-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .anova-table th { background: var(--green-deep); color: #fff; padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  .anova-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .anova-table .between { background: var(--blue-light); }
+  .anova-table .within { background: var(--amber-light); }
+  .anova-table .total-row { background: var(--cream); font-weight: 600; }
+
+  /* ── COMPARISON TABLE ── */
+  .comparison { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .comparison th { background: var(--purple-deep); color: #fff; padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  .comparison td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .comparison .hl { background: var(--purple-light); font-weight: 600; }
+
+  /* ── STORY TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; margin: 24px 0; }
+  .timeline::before {
+    content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+    width: 3px; background: var(--gold);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item::before {
+    content: ''; position: absolute;
+    left: -26px; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); border: 3px solid var(--cream);
+  }
+  .tl-title { font-weight: 700; color: var(--blue-deep); margin-bottom: 4px; }
+  .tl-body { font-size: 14px; color: #555; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 40px 0; }
+  .gold-divider { height: 2px; background: var(--gold); margin: 48px 0; }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px; margin: 40px 0;
+  }
+  .toc h3 { font-size: 20px; margin-top: 0; border: none; padding: 0; margin-bottom: 16px; }
+  .toc ol { padding-left: 24px; }
+  .toc li { margin-bottom: 8px; font-size: 14px; }
+  .toc a { color: var(--blue-mid); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    .print-bar { display: none !important; }
+    body { background: white; }
+    .cover { min-height: auto; padding: 40px; }
+    .chapter { page-break-before: always; }
+    .qa-section { page-break-inside: avoid; }
+    .example { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 40px 16px; }
+    .cover { padding: 80px 20px 40px; }
+    .card-row { grid-template-columns: 1fr; }
+    .error-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PRINT BAR -->
+<div class="print-bar">
+  <span>📊 Statistics Master Revision Guide</span>
+  <button class="print-btn" onclick="window.print()">⬇ PRINT / SAVE PDF</button>
+</div>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="cover-badge">Complete Study Reference</div>
+  <h1>Statistics<br><span>Master Revision</span></h1>
+  <p class="subtitle">Correlation · Regression · Hypothesis Testing · ANOVA · Chi-Square — everything connected, explained from first principles</p>
+  <div class="cover-divider"></div>
+  <div class="chapters-list">
+    <span class="chapter-pill">Pearson's r</span>
+    <span class="chapter-pill">Spearman Rank</span>
+    <span class="chapter-pill">Regression Lines</span>
+    <span class="chapter-pill">Z-Test</span>
+    <span class="chapter-pill">t-Test</span>
+    <span class="chapter-pill">ANOVA</span>
+    <span class="chapter-pill">Chi-Square</span>
+    <span class="chapter-pill">Type I & II Errors</span>
+  </div>
+  <div class="cover-stats">
+    <div class="cover-stat"><span class="num">7</span><span class="lbl">Chapters</span></div>
+    <div class="cover-stat"><span class="num">25+</span><span class="lbl">Solved Problems</span></div>
+    <div class="cover-stat"><span class="num">40+</span><span class="lbl">Q&A Questions</span></div>
+    <div class="cover-stat"><span class="num">100%</span><span class="lbl">Syllabus Coverage</span></div>
+  </div>
+</div>
+
+<div class="wrapper">
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h3>📋 Table of Contents</h3>
+  <ol>
+    <li><a href="#ch1">Correlation — Pearson's r & Spearman Rank</a></li>
+    <li><a href="#ch2">Regression — Y on X & X on Y</a></li>
+    <li><a href="#ch3">Hypothesis Testing — Core Theory</a></li>
+    <li><a href="#ch4">Z-Test — Large Sample Tests</a></li>
+    <li><a href="#ch5">t-Test — Small Sample Tests</a></li>
+    <li><a href="#ch6">One-Way ANOVA</a></li>
+    <li><a href="#ch7">Chi-Square Test</a></li>
+    <li><a href="#ch8">Exam Questions — 5 & 10 Markers</a></li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 1: CORRELATION -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch1">
+  <div class="chapter-number">Chapter 01</div>
+  <h2>Correlation</h2>
+  <p class="intro">Correlation measures the strength and direction of a linear relationship between two variables. It answers: "Do X and Y move together?"</p>
+</div>
+
+<h3>The Big Picture — What is Correlation?</h3>
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-title">You have two variables, X and Y</div>
+    <div class="tl-body">e.g. Hours studied vs exam marks. You want to know if they move together.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-title">You compute r — a single number between −1 and +1</div>
+    <div class="tl-body">+1 = perfect positive (both go up together). −1 = perfect negative (one up, other down). 0 = no linear relationship.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-title">The key idea: deviation from the mean</div>
+    <div class="tl-body">If X is above its mean AND Y is above its mean → positive co-movement. The formula captures this pattern across all data points.</div>
+  </div>
+</div>
+
+<h3>Pearson's r — Formula & Story</h3>
+
+<div class="formula">
+  <span class="f">r = Σ(x−x̄)(y−ȳ) ÷ √[Σ(x−x̄)² × Σ(y−ȳ)²]</span>
+  <span class="note">Numerator = raw co-movement. Denominator = maximum possible co-movement. r = fraction of maximum achieved.</span>
+</div>
+
+<div class="card-row">
+  <div class="card blue">
+    <h5>Numerator — Σ(x−x̄)(y−ȳ)</h5>
+    <p>Product of deviations. <strong>Sign</strong> shows direction (+/−). <strong>Size</strong> shows co-movement strength. Points far from both means contribute more.</p>
+  </div>
+  <div class="card green">
+    <h5>Denominator — √[Σ(x−x̄)² × Σ(y−ȳ)²]</h5>
+    <p>Maximum possible covariance. We multiply the two spreads (like area). Square root removes squared units. This is the "ceiling".</p>
+  </div>
+  <div class="card amber">
+    <h5>Why divide? The normalisation story</h5>
+    <p>r = actual co-movement ÷ ceiling. Always −1 to +1 regardless of data scale. Makes datasets comparable.</p>
+  </div>
+</div>
+
+<div class="alert key">
+  <span class="icon">🔑</span>
+  <div><strong>The n cancellation:</strong> Covariance = Σ(x−x̄)(y−ȳ)/n and σ = √(Σ deviations²/n). When you compute r = Cov/(σx×σy), the n cancels completely. So the raw formula Σ(x−x̄)(y−ȳ) / √[Σ(x−x̄)²·Σ(y−ȳ)²] already has n cancelled.</div>
+</div>
+
+<div class="example">
+  <div class="example-header">
+    <span class="example-badge">WORKED EXAMPLE</span>
+    <span class="example-title">Pearson's r — Students Data</span>
+  </div>
+  <p style="margin-bottom:16px">Students A(2,50), B(4,65), C(6,75), D(8,90). Find r. Here x̄ = 5, ȳ = 70.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Student</th><th>x</th><th>y</th><th>x−x̄</th><th>y−ȳ</th><th>(x−x̄)(y−ȳ)</th><th>(x−x̄)²</th><th>(y−ȳ)²</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>2</td><td>50</td><td>−3</td><td>−20</td><td>60</td><td>9</td><td>400</td></tr>
+        <tr><td>B</td><td>4</td><td>65</td><td>−1</td><td>−5</td><td>5</td><td>1</td><td>25</td></tr>
+        <tr><td>C</td><td>6</td><td>75</td><td>+1</td><td>+5</td><td>5</td><td>1</td><td>25</td></tr>
+        <tr><td>D</td><td>8</td><td>90</td><td>+3</td><td>+20</td><td>60</td><td>9</td><td>400</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td></td><td></td><td></td><td></td><td><strong>130</strong></td><td><strong>20</strong></td><td><strong>850</strong></td></tr></tfoot>
+    </table>
+  </div>
+  <div class="result-box">
+    <div>
+      <div class="res-label">r = 130 ÷ √(20 × 850) = 130 ÷ 130.38</div>
+      <div class="res-val">r = 0.997 (near-perfect positive)</div>
+    </div>
+  </div>
+</div>
+
+<h3>Spearman Rank Correlation</h3>
+
+<div class="def-box">
+  <div class="term">Why Spearman?</div>
+  <p>Pearson assumes linear relationships. Spearman converts raw data to ranks first — neutralising outliers and working with non-linear relationships. One outlier (say 500 hours) becomes rank 4 — same as any other rank 4 value.</p>
+</div>
+
+<div class="formula">
+  <span class="f">ρ = 1 − 6Σd² ÷ n(n²−1)</span>
+  <span class="note">d = difference between rank of X and rank of Y for each pair. Σd²=0 → ρ=1 (perfect). Maximum Σd² → ρ=−1.</span>
+</div>
+
+<div class="alert warn">
+  <span class="icon">⚠️</span>
+  <div><strong>Tied Ranks Rule:</strong> When two values tie, average the ranks they would have occupied. Two 5s taking ranks 4,5 → both get (4+5)/2 = 4.5. Next rank = 6. Three values tying ranks 1,2,3 → all get 2. Next = 4.</div>
+</div>
+
+<div class="alert trap">
+  <span class="icon">🚫</span>
+  <div><strong>Common Trap:</strong> Always use the SAME ranking convention (1=highest or 1=lowest) for BOTH X and Y. Mixing conventions gives wrong d values.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 2: REGRESSION -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch2">
+  <div class="chapter-number">Chapter 02</div>
+  <h2>Regression</h2>
+  <p class="intro">Regression builds on correlation to make predictions. While correlation asks "do they move together?", regression asks "given X, what is Y?" — and builds an equation to answer that.</p>
+</div>
+
+<h3>Why Two Regression Lines?</h3>
+<p>Correlation describes the relationship. Regression predicts one variable from the other. The direction of prediction determines which line to use.</p>
+
+<div class="card-row">
+  <div class="card blue">
+    <h5>Y on X line</h5>
+    <p><strong>Use when:</strong> X is known, predict Y.<br>
+    Minimises <em>vertical</em> errors (gaps in Y direction).<br>
+    Formula: <span class="math">Y − ȳ = byx(X − x̄)</span></p>
+  </div>
+  <div class="card green">
+    <h5>X on Y line</h5>
+    <p><strong>Use when:</strong> Y is known, predict X.<br>
+    Minimises <em>horizontal</em> errors (gaps in X direction).<br>
+    Formula: <span class="math">X − x̄ = bxy(Y − ȳ)</span></p>
+  </div>
+</div>
+
+<div class="alert warn">
+  <span class="icon">⚠️</span>
+  <div><strong>The Shoe Analogy:</strong> You CANNOT rearrange Y on X to predict X. Rearranging algebraically flips the equation but does NOT change which errors are minimised. The line is still minimising vertical errors. It's like putting a left shoe on the right foot — it's still a left shoe.</div>
+</div>
+
+<h3>Regression Coefficients</h3>
+
+<div class="formula">
+  <span class="f">byx = Σ(x−x̄)(y−ȳ) ÷ Σ(x−x̄)² = r × (σy/σx)</span>
+  <span class="note">Slope of Y on X line. Same numerator as r. Denominator = spread of X only. Covariance ÷ Variance(X).</span>
+</div>
+
+<div class="formula">
+  <span class="f">bxy = Σ(x−x̄)(y−ȳ) ÷ Σ(y−ȳ)² = r × (σx/σy)</span>
+  <span class="note">Slope of X on Y line. Same numerator. Denominator = spread of Y only. Covariance ÷ Variance(Y).</span>
+</div>
+
+<div class="card-row">
+  <div class="card purple">
+    <h5>Key Relationships</h5>
+    <ul>
+      <li>byx × bxy = r²</li>
+      <li>r = √(byx × bxy)</li>
+      <li>Both coefficients have same sign as r</li>
+      <li>When r = ±1 → both lines are identical</li>
+      <li>When r = 0 → lines are perpendicular</li>
+      <li>Both lines pass through (x̄, ȳ)</li>
+    </ul>
+  </div>
+  <div class="card amber">
+    <h5>Story of byx = Cov ÷ Var(X)</h5>
+    <p>Covariance = how much X and Y move together. Variance(X) = how much X moves on its own. The ratio answers: "Of everything X does, how much does Y actually follow?" That ratio IS the slope.</p>
+  </div>
+</div>
+
+<div class="example">
+  <div class="example-header">
+    <span class="example-badge">WORKED EXAMPLE</span>
+    <span class="example-title">Both Regression Lines — Study Hours Data</span>
+  </div>
+  <p style="margin-bottom:16px">Given: Σ(x−x̄)(y−ȳ)=140, Σ(x−x̄)²=20, Σ(y−ȳ)²=1025, x̄=5, ȳ=62.5</p>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-label">Compute byx</div>
+      byx = 140/20 = <strong>7</strong>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-label">Compute bxy</div>
+      bxy = 140/1025 = <strong>0.137</strong>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-label">Y on X equation</div>
+      Y − 62.5 = 7(X − 5) → <strong>Y = 7X + 27.5</strong>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-label">X on Y equation</div>
+      X − 5 = 0.137(Y − 62.5) → <strong>X = 0.137Y − 3.56</strong>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <div class="step-label">Verify r</div>
+      r = √(7 × 0.137) = √0.959 = <strong>0.979</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 3: HYPOTHESIS TESTING THEORY -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch3">
+  <div class="chapter-number">Chapter 03</div>
+  <h2>Hypothesis Testing — Core Theory</h2>
+  <p class="intro">You observe something in a sample. Hypothesis testing asks: "Is this real, or is it just random chance?" Everything flows from this one question.</p>
+</div>
+
+<h3>The Complete Story in One Flow</h3>
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-title">The Problem</div>
+    <div class="tl-body">You can never measure the entire population. You take a sample. Your sample mean will ALWAYS differ from the population mean — even if the population claim is 100% true. That's sampling randomness.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-title">The Question</div>
+    <div class="tl-body">"Is my sample's deviation from the claim within normal randomness — or is it so extreme that it can no longer be explained by luck?"</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-title">The Answer</div>
+    <div class="tl-body">Set up two competing hypotheses. Compute a test statistic. Compare to a critical threshold (determined by your tolerance for error α). Make the decision.</div>
+  </div>
+</div>
+
+<h3>Null & Alternative Hypotheses</h3>
+<div class="card-row">
+  <div class="card cream">
+    <h5>H₀ — Null Hypothesis</h5>
+    <p>The conservative, "nothing happened" claim. The default belief. Like innocent until proven guilty. <strong>Always contains = sign.</strong></p>
+    <p style="margin-top:8px">Example: H₀: μ = 70</p>
+  </div>
+  <div class="card blue">
+    <h5>H₁ — Alternative Hypothesis</h5>
+    <p>Your challenger claim. What you're trying to prove. You never prove H₁ directly — you disprove H₀, and H₁ wins by default.</p>
+    <p style="margin-top:8px">Example: H₁: μ ≠ 70 or μ > 70 or μ &lt; 70</p>
+  </div>
+</div>
+
+<h3>Level of Significance (α)</h3>
+<div class="def-box">
+  <div class="term">Definition</div>
+  <p>α is the probability of rejecting a TRUE null hypothesis (Type I error). It defines the boundary between "normal randomness" and "suspiciously extreme." α = 0.05 means: I will only reject H₀ if my result would happen by chance less than 5% of the time.</p>
+</div>
+
+<div class="card-row">
+  <div class="card green">
+    <h5>α = 0.05 (5%)</h5>
+    <p>Most common. Accept a 5% risk of wrongly rejecting H₀. Critical Z = ±1.96 (two-tailed).</p>
+  </div>
+  <div class="card blue">
+    <h5>α = 0.01 (1%)</h5>
+    <p>Stricter. Used for high-stakes decisions. Critical Z = ±2.576 (two-tailed).</p>
+  </div>
+  <div class="card amber">
+    <h5>α not given?</h5>
+    <p>Default to α = 0.05. State your assumption clearly: "Since no level of significance is specified, we assume α = 0.05."</p>
+  </div>
+</div>
+
+<h3>Type I and Type II Errors</h3>
+<div class="error-grid">
+  <div class="eg-header"></div>
+  <div class="eg-header">H₀ is TRUE (innocent)</div>
+  <div class="eg-header">H₀ is FALSE (guilty)</div>
+  <div class="eg-row-label">Reject H₀<br>(Convict)</div>
+  <div class="eg-error eg-t1"><div class="eg-cell-title">TYPE I ERROR</div>Convicting an innocent person. Probability = α. You control this.</div>
+  <div class="eg-correct"><strong>Correct Decision</strong><br>Guilty person convicted. Probability = 1−β (Power)</div>
+  <div class="eg-row-label">Accept H₀<br>(Acquit)</div>
+  <div class="eg-correct"><strong>Correct Decision</strong><br>Innocent person freed. Probability = 1−α</div>
+  <div class="eg-error eg-t2"><div class="eg-cell-title">TYPE II ERROR</div>Freeing a guilty person. Probability = β. Harder to control.</div>
+</div>
+
+<div class="alert key">
+  <span class="icon">🔑</span>
+  <div><strong>The Cruel Tradeoff:</strong> You cannot minimise both errors simultaneously. Reducing α (stricter test) → fewer Type I errors BUT more Type II errors. The only real fix: increase sample size, which reduces both errors simultaneously.</div>
+</div>
+
+<h3>One-Tailed vs Two-Tailed Tests</h3>
+
+<div class="card-row">
+  <div class="card red">
+    <h5>Two-Tailed (H₁: μ ≠ value)</h5>
+    <p>No direction specified. Check both extremes. α splits equally: 2.5% each side. Critical Z = ±1.96 at 5%.</p>
+    <p style="margin-top:8px"><em>Keywords: "different from", "has changed", "is not equal to"</em></p>
+  </div>
+  <div class="card green">
+    <h5>Left-Tailed (H₁: μ &lt; value)</h5>
+    <p>Suspect it's LOWER. All 5% on left side. Critical Z = −1.645 at 5%.</p>
+    <p style="margin-top:8px"><em>Keywords: "less than", "lower", "decreased", "at most"</em></p>
+  </div>
+  <div class="card amber">
+    <h5>Right-Tailed (H₁: μ > value)</h5>
+    <p>Suspect it's HIGHER. All 5% on right side. Critical Z = +1.645 at 5%.</p>
+    <p style="margin-top:8px"><em>Keywords: "more than", "higher", "increased", "effective", "at least"</em></p>
+  </div>
+</div>
+
+<h3>The 6-Step Procedure</h3>
+<div class="card-row">
+  <div class="card cream" style="grid-column:1/-1">
+    <div class="step"><div class="step-num" style="background:#0f3460">1</div><div class="step-body"><strong>State H₀ and H₁</strong> — commit before seeing data</div></div>
+    <div class="step"><div class="step-num" style="background:#1b6ca8">2</div><div class="step-body"><strong>Set α</strong> — 0.05 or 0.01 (your tolerance for Type I error)</div></div>
+    <div class="step"><div class="step-num" style="background:#0a5c36">3</div><div class="step-body"><strong>Choose the test</strong> — Z, t, chi-square, F (depends on data type and n)</div></div>
+    <div class="step"><div class="step-num" style="background:#7a4400">4</div><div class="step-body"><strong>Find critical value</strong> — from Z/t/chi-square/F table using α and df</div></div>
+    <div class="step"><div class="step-num" style="background:#3d1a6e">5</div><div class="step-body"><strong>Compute test statistic</strong> — plug numbers into formula</div></div>
+    <div class="step"><div class="step-num" style="background:#7a1c1c">6</div><div class="step-body"><strong>Compare and decide</strong> — is your statistic in the rejection zone?</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 4: Z-TEST -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch4">
+  <div class="chapter-number">Chapter 04</div>
+  <h2>Z-Test — Large Sample Tests</h2>
+  <p class="intro">Used when σ (population standard deviation) is KNOWN and n ≥ 30. The cleanest test. Everything else builds on this foundation.</p>
+</div>
+
+<h3>Z-Test for Means</h3>
+
+<div class="formula">
+  <span class="f">Z = (x̄ − μ₀) ÷ (σ/√n)</span>
+  <span class="note">SE = σ/√n = Standard Error. Bigger n → smaller SE → more sensitive test. Z tells you: how many SEs is your sample from the claimed mean?</span>
+</div>
+
+<div class="alert key">
+  <span class="icon">🔑</span>
+  <div><strong>The SE Story:</strong> σ measures how individual values vary. SE = σ/√n measures how sample MEANS vary. With 400 students, sample means cluster tightly — SE = 0.4. Even a 1-mark gap becomes suspicious. With only 5 students, SE is large — you need bigger gaps to be convincing.</div>
+</div>
+
+<div class="example">
+  <div class="example-header">
+    <span class="example-badge">WORKED EXAMPLE</span>
+    <span class="example-title">School Marks — Z-Test for Means</span>
+  </div>
+  <p style="margin-bottom:16px">School claims μ=70. Sample: n=50, x̄=67, σ=15. Test at 5%.</p>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>H₀: μ=70 &nbsp;&nbsp; H₁: μ≠70</strong> &nbsp; (no direction → two-tailed)</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body">α=0.05, two-tailed → <strong>Critical Z = ±1.96</strong></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body">SE = 15/√50 = 15/7.071 = <strong>2.121</strong></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body">Z = (67−70)/2.121 = −3/2.121 = <strong>−1.414</strong></div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-body">|Z calculated| = 1.414 &lt; Z critical = 1.96 → <strong>Fail to reject H₀</strong></div></div>
+  <div class="result-box">
+    <div>
+      <div class="res-label">Conclusion</div>
+      <div class="res-val">School's claim is not disproved at 5%</div>
+    </div>
+  </div>
+</div>
+
+<h3>Z-Test for Proportions</h3>
+
+<div class="formula">
+  <span class="f">Z = (p̂ − p₀) ÷ √(p₀q₀/n)</span>
+  <span class="note">p̂ = sample proportion. p₀ = claimed proportion. q₀ = 1−p₀. Use when data is about proportions, not means.</span>
+</div>
+
+<div class="alert trap">
+  <span class="icon">🚫</span>
+  <div><strong>Critical Values to Memorise:</strong><br>
+  α=0.05 two-tailed → ±1.96 &nbsp;|&nbsp; α=0.01 two-tailed → ±2.576<br>
+  α=0.05 one-tailed → ±1.645 &nbsp;|&nbsp; α=0.01 one-tailed → ±2.326</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 5: T-TEST -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch5">
+  <div class="chapter-number">Chapter 05</div>
+  <h2>t-Test — Small Sample Tests</h2>
+  <p class="intro">Used when σ is UNKNOWN and n &lt; 30. You estimate σ using sample SD (s). The t-distribution is wider than Z to account for this extra uncertainty.</p>
+</div>
+
+<h3>Why t and not Z?</h3>
+<div class="card-row">
+  <div class="card blue">
+    <h5>Z-test condition</h5>
+    <p>σ is KNOWN (given in problem). n ≥ 30.<br>Use Z table. No df needed.</p>
+  </div>
+  <div class="card green">
+    <h5>t-test condition</h5>
+    <p>σ is UNKNOWN. Only s (sample SD) given. n &lt; 30.<br>Use t table with df = n−1.</p>
+  </div>
+</div>
+
+<div class="alert key">
+  <span class="icon">🔑</span>
+  <div><strong>The t distribution:</strong> Fatter tails than Z because using s introduces extra uncertainty. As df → ∞, t becomes Z. Larger df → t critical values get smaller → closer to Z values.</div>
+</div>
+
+<h3>One Sample t-Test</h3>
+
+<div class="formula">
+  <span class="f">t = (x̄ − μ₀) ÷ (s/√n) &nbsp;&nbsp;&nbsp; df = n−1</span>
+  <span class="note">CRITICAL: SE = s/√n. NOT s/√(n−1). The n−1 appears only INSIDE the formula for s itself, never in SE.</span>
+</div>
+
+<div class="alert trap">
+  <span class="icon">🚫</span>
+  <div><strong>Most Common Exam Trap:</strong> SE = s/√n (correct) NOT s/√(n−1) (wrong). The n−1 lives only inside s = √[Σ(x−x̄)²/(n−1)]. Once s is computed, SE uses full n.</div>
+</div>
+
+<h3>Two Sample t-Test</h3>
+
+<div class="formula">
+  <span class="f">t = (x̄₁ − x̄₂) ÷ [Sp × √(1/n₁ + 1/n₂)]</span>
+  <span class="note">df = n₁+n₂−2. Sp = pooled SD = √[((n₁−1)s₁² + (n₂−1)s₂²) ÷ (n₁+n₂−2)]</span>
+</div>
+
+<h3>Paired t-Test</h3>
+
+<div class="formula">
+  <span class="f">t = d̄ ÷ (Sd/√n) &nbsp;&nbsp;&nbsp; df = n−1</span>
+  <span class="note">d = After−Before for each pair. d̄ = mean of differences. Sd = SD of differences. H₀: μd = 0.</span>
+</div>
+
+<div class="card-row">
+  <div class="card cream" style="grid-column:1/-1">
+    <h5>Which t-test to use?</h5>
+    <table class="comparison">
+      <thead><tr><th>Situation</th><th>Test</th><th>H₀</th><th>df</th></tr></thead>
+      <tbody>
+        <tr><td>One group vs claimed value</td><td class="hl">One sample t</td><td>μ = value</td><td>n−1</td></tr>
+        <tr><td>Two independent groups</td><td class="hl">Two sample t</td><td>μ₁ = μ₂</td><td>n₁+n₂−2</td></tr>
+        <tr><td>Same people, before vs after</td><td class="hl">Paired t</td><td>μd = 0</td><td>n pairs − 1</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Rejection Conditions — All Three Tests</h3>
+<div class="card-row">
+  <div class="card red">
+    <h5>Two-Tailed</h5>
+    <p><strong>Reject H₀ if |t calc| > t critical</strong></p>
+    <p>Drop the sign. Use absolute value. Size matters, not direction.</p>
+  </div>
+  <div class="card green">
+    <h5>Left-Tailed</h5>
+    <p><strong>Reject H₀ if t calc &lt; −t critical</strong></p>
+    <p>Sign matters directly. Must be sufficiently negative.</p>
+  </div>
+  <div class="card amber">
+    <h5>Right-Tailed</h5>
+    <p><strong>Reject H₀ if t calc > +t critical</strong></p>
+    <p>Sign matters directly. Must be sufficiently positive.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 6: ANOVA -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch6">
+  <div class="chapter-number">Chapter 06</div>
+  <h2>One-Way ANOVA</h2>
+  <p class="intro">Analysis of Variance. Tests whether 3 or more group means are equal simultaneously — in one test, avoiding the accumulated error of multiple t-tests.</p>
+</div>
+
+<h3>Why ANOVA? The Multiple Testing Problem</h3>
+<div class="card-row">
+  <div class="card red">
+    <h5>Wrong approach: Multiple t-tests</h5>
+    <p>3 groups → 3 t-tests. Each has 5% error chance. Total error ≈ 14%. Not controlled. Unreliable.</p>
+  </div>
+  <div class="card green">
+    <h5>Correct: ANOVA</h5>
+    <p>Tests ALL groups simultaneously. Error stays exactly at 5%. One F-statistic. One decision.</p>
+  </div>
+</div>
+
+<h3>The Core Idea — F Ratio</h3>
+
+<div class="formula">
+  <span class="f">F = MSC ÷ MSE = Between-group variance ÷ Within-group variance</span>
+  <span class="note">F ≈ 1 → groups are similar (fail to reject H₀). F >> 1 → groups are different (reject H₀). Always right-tailed.</span>
+</div>
+
+<h3>Professor's Shortcut Formulas (Exam Method)</h3>
+
+<div class="card-row">
+  <div class="card purple" style="grid-column:1/-1">
+    <h5>The Formula Chain — Do These in Order</h5>
+    <div class="step"><div class="step-num" style="background:#7b52ab">1</div><div class="step-body"><strong>T = grand total of all values, N = total count</strong></div></div>
+    <div class="step"><div class="step-num" style="background:#7b52ab">2</div><div class="step-body"><strong>CF = T²/N</strong> (Correction Factor — used in every formula)</div></div>
+    <div class="step"><div class="step-num" style="background:#7b52ab">3</div><div class="step-body"><strong>SSC = Σ(column total)²/n − CF</strong> (Between groups)</div></div>
+    <div class="step"><div class="step-num" style="background:#7b52ab">4</div><div class="step-body"><strong>SST = Σ(every value)² − CF</strong> (Total)</div></div>
+    <div class="step"><div class="step-num" style="background:#7b52ab">5</div><div class="step-body"><strong>SSE = SST − SSC</strong> (Within groups — never compute directly)</div></div>
+    <div class="step"><div class="step-num" style="background:#7b52ab">6</div><div class="step-body"><strong>Fill ANOVA table → compute F = MSC/MSE</strong></div></div>
+    <div class="step"><div class="step-num" style="background:#7b52ab">7</div><div class="step-body"><strong>Compare F calc vs F critical (df1=c−1, df2=c(r−1) or N−c)</strong></div></div>
+  </div>
+</div>
+
+<h3>ANOVA Table Structure</h3>
+<div class="tbl-wrap">
+  <table class="anova-table">
+    <thead><tr><th>Source</th><th>SS</th><th>df</th><th>MS = SS÷df</th><th>F</th></tr></thead>
+    <tbody>
+      <tr class="between"><td>Between (SSC)</td><td>SSC</td><td>c−1</td><td>MSC = SSC/(c−1)</td><td rowspan="2" style="vertical-align:middle; font-weight:600; font-size:18px">MSC÷MSE</td></tr>
+      <tr class="within"><td>Within (SSE)</td><td>SSE</td><td>c(r−1)</td><td>MSE = SSE/c(r−1)</td></tr>
+      <tr class="total-row"><td>Total</td><td>SST</td><td>N−1</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="alert tip">
+  <span class="icon">✅</span>
+  <div><strong>Verification check:</strong> SSC + SSE = SST always. If not, you made an arithmetic error. Also check: df between + df within = N−1.</div>
+</div>
+
+<div class="example">
+  <div class="example-header">
+    <span class="example-badge">WORKED EXAMPLE</span>
+    <span class="example-title">Three Seeds — One-Way ANOVA</span>
+  </div>
+  <p style="margin-bottom:16px">Seeds A(20,21,23,16,20), B(18,20,17,15,25), C(25,28,22,28,32). c=3, r=5, N=15.</p>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>H₀: μA=μB=μC &nbsp; H₁: At least one mean differs</strong></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body">T = 100+95+135 = 330. CF = 330²/15 = 7260</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body">SSC = 100²/5 + 95²/5 + 135²/5 − 7260 = 7450 − 7260 = <strong>190</strong></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body">SST = 7590 − 7260 = <strong>330</strong> (ΣX² = 2026+1863+3701 = 7590)</div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-body">SSE = 330 − 190 = <strong>140</strong></div></div>
+  <div class="step"><div class="step-num">6</div><div class="step-body">MSC = 190/2 = 95. MSE = 140/12 = 11.67. <strong>F = 95/11.67 = 8.14</strong></div></div>
+  <div class="step"><div class="step-num">7</div><div class="step-body">F critical (df1=2, df2=12, α=0.05) = 3.88. 8.14 > 3.88 → <strong>Reject H₀</strong></div></div>
+  <div class="result-box" style="background:var(--red-light); border-color:var(--red-mid)">
+    <div>
+      <div class="res-label" style="color:var(--red-deep)">Conclusion</div>
+      <div class="res-val" style="color:var(--red-deep)">Seeds show significant yield differences</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 7: CHI-SQUARE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch7">
+  <div class="chapter-number">Chapter 07</div>
+  <h2>Chi-Square Test</h2>
+  <p class="intro">Works with categorical data and frequencies — not means. Compares what you OBSERVED vs what you EXPECTED. Same formula for both types; only how you compute E differs.</p>
+</div>
+
+<div class="formula">
+  <span class="f">χ² = Σ (O − E)² ÷ E</span>
+  <span class="note">Sum over ALL categories/cells. Large χ² = big gap between observed and expected = reject H₀. Always right-tailed.</span>
+</div>
+
+<h3>Type 1 — Goodness of Fit</h3>
+<div class="def-box">
+  <div class="term">Question answered</div>
+  <p>Does your data FIT a claimed distribution? One variable, one row of counts.</p>
+  <p style="margin-top:8px"><strong>Finding E:</strong> E = Total observations × claimed proportion for each category.</p>
+  <p style="margin-top:4px"><strong>df = k−1</strong> where k = number of categories.</p>
+</div>
+
+<div class="alert tip">
+  <span class="icon">✅</span>
+  <div><strong>Always verify:</strong> ΣO = ΣE (both equal total n). Σ(O−E) = 0 (deviations cancel). These are built-in error checks — if they fail, recheck your E values.</div>
+</div>
+
+<h3>Type 2 — Independence of Attributes</h3>
+<div class="def-box">
+  <div class="term">Question answered</div>
+  <p>Are two variables related or independent? Two variables, a rows×columns contingency table.</p>
+  <p style="margin-top:8px"><strong>Finding E:</strong> E = (Row total × Column total) ÷ Grand total for each cell.</p>
+  <p style="margin-top:4px"><strong>df = (rows−1) × (columns−1)</strong></p>
+</div>
+
+<div class="alert key">
+  <span class="icon">🔑</span>
+  <div><strong>2×2 table pattern:</strong> All four (O−E) values always have the same absolute value. If yours don't, recheck your E calculations.</div>
+</div>
+
+<div class="example">
+  <div class="example-header">
+    <span class="example-badge">WORKED EXAMPLE</span>
+    <span class="example-title">Training vs Performance — Independence Test</span>
+  </div>
+  <p style="margin-bottom:16px">Online/Offline training vs High/Low performance. n=120.</p>
+  <div class="tbl-wrap" style="margin-bottom:16px">
+    <table>
+      <thead><tr><th>Training</th><th>High Performance</th><th>Low Performance</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Online</td><td>35</td><td>25</td><td>60</td></tr>
+        <tr><td>Offline</td><td>50</td><td>10</td><td>60</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td>85</td><td>35</td><td>120</td></tr></tfoot>
+    </table>
+  </div>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>H₀: Performance is independent of training type. H₁: They are related.</strong></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body">df = (2−1)(2−1) = 1. χ² critical = 3.841</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body">E(Online,High)=60×85/120=42.5. E(Online,Low)=60×35/120=17.5. (Both Offline same.)</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body">χ² = (35−42.5)²/42.5 + (25−17.5)²/17.5 + (50−42.5)²/42.5 + (10−17.5)²/17.5 = 1.32+3.21+1.32+3.21 = <strong>9.076</strong></div></div>
+  <div class="result-box" style="background:var(--red-light); border-color:var(--red-mid)">
+    <div>
+      <div class="res-label" style="color:var(--red-deep)">9.076 > 3.841 → Reject H₀</div>
+      <div class="res-val" style="color:var(--red-deep)">Performance DEPENDS on training type</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CHAPTER 8: EXAM QUESTIONS -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" id="ch8">
+  <div class="chapter-number">Chapter 08</div>
+  <h2>Exam Questions — 5 & 10 Markers</h2>
+  <p class="intro">Model questions and answers across all topics. 5-mark questions require definitions + brief explanation. 10-mark questions require detailed explanation + worked example.</p>
+</div>
+
+<div class="gold-divider"></div>
+<h3>5-Mark Questions</h3>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">5 MARKS</span><h4>Define correlation. What does r = +0.9 mean?</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">Define Karl Pearson's coefficient of correlation and interpret r = +0.9 and r = −0.3.</div>
+    <div class="qa-answer">
+      <p><strong>Definition:</strong> Karl Pearson's coefficient of correlation (r) is a statistical measure that quantifies the strength and direction of a linear relationship between two variables X and Y. It always lies between −1 and +1.</p>
+      <p><strong>Formula:</strong> r = Σ(x−x̄)(y−ȳ) ÷ √[Σ(x−x̄)² × Σ(y−ȳ)²]</p>
+      <p><strong>Interpretation:</strong></p>
+      <ul>
+        <li><strong>r = +0.9:</strong> Strong positive correlation. As X increases, Y also increases. The relationship is nearly linear and very strong. 90% of the maximum possible co-movement is achieved.</li>
+        <li><strong>r = −0.3:</strong> Weak negative correlation. As X increases, Y tends to decrease, but the relationship is weak and inconsistent. Much random scatter exists.</li>
+        <li><strong>r = 0:</strong> No linear relationship.</li>
+        <li><strong>r = ±1:</strong> Perfect linear relationship. All points fall exactly on a straight line.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">5 MARKS</span><h4>Explain Type I and Type II errors with examples.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">What are Type I and Type II errors in hypothesis testing? How are they related to α and β?</div>
+    <div class="qa-answer">
+      <p><strong>Type I Error (α — False Positive):</strong> Rejecting H₀ when it is actually TRUE. Example: Declaring a medicine effective when it actually has no effect. Probability = α (the significance level you set). You directly control this by choosing α.</p>
+      <p><strong>Type II Error (β — False Negative):</strong> Failing to reject H₀ when it is actually FALSE. Example: Declaring a medicine ineffective when it actually works. Probability = β. Harder to control — depends on sample size, effect size, and α.</p>
+      <p><strong>The tradeoff:</strong> Reducing α (being stricter) reduces Type I errors but increases Type II errors. The only way to reduce both simultaneously is to increase the sample size.</p>
+      <p><strong>Power</strong> = 1 − β = probability of correctly rejecting a false H₀. Higher power is desirable.</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">5 MARKS</span><h4>Explain level of significance with an example.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">What is the level of significance? Why is α = 0.05 commonly used?</div>
+    <div class="qa-answer">
+      <p><strong>Definition:</strong> The level of significance (α) is the probability of committing a Type I error — rejecting a null hypothesis that is actually true. It represents the maximum tolerable probability of making a wrong rejection decision.</p>
+      <p><strong>Example:</strong> A school claims μ = 70 marks. You sample 50 students and get x̄ = 67. At α = 0.05, you are saying: "I will only reject the school's claim if this result would happen by pure chance less than 5% of the time when μ truly = 70."</p>
+      <p>α = 0.05 sets the acceptance range as 65.84 to 74.16 (70 ± 1.96 × SE). Since 67 falls inside this range, you fail to reject the claim.</p>
+      <p><strong>Why 0.05?</strong> It is a balance — strict enough to avoid false alarms, lenient enough to still detect real effects. 0.01 is used when consequences of wrong rejection are severe (drug trials, medical decisions).</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">5 MARKS</span><h4>Differentiate Z-test and t-test.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">When do you use a Z-test vs a t-test? What is standard error?</div>
+    <div class="qa-answer">
+      <table class="comparison">
+        <thead><tr><th>Feature</th><th>Z-Test</th><th>t-Test</th></tr></thead>
+        <tbody>
+          <tr><td>Population SD</td><td>σ known</td><td>σ unknown</td></tr>
+          <tr><td>Sample size</td><td>n ≥ 30</td><td>n &lt; 30</td></tr>
+          <tr><td>Formula</td><td>(x̄−μ)/σ/√n</td><td>(x̄−μ)/s/√n</td></tr>
+          <tr><td>Table used</td><td>Z (normal) table</td><td>t table with df</td></tr>
+          <tr><td>Critical value (5%, 2-tailed)</td><td>±1.96</td><td>Depends on df (larger)</td></tr>
+          <tr><td>Distribution shape</td><td>Normal bell</td><td>Fatter tails</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Standard Error (SE):</strong> SE = σ/√n for Z-test, SE = s/√n for t-test. It measures how much sample means naturally vary around the true mean. Larger n → smaller SE → more stable sample mean → more sensitive test.</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">5 MARKS</span><h4>Explain the two regression lines and why there are two.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">Why are there two regression lines? When do you use each?</div>
+    <div class="qa-answer">
+      <p>There are two regression lines because prediction is directional. Depending on which variable is known, a different line is used:</p>
+      <p><strong>Y on X:</strong> Use when X is known and you want to predict Y. This line minimises the sum of squared VERTICAL distances (errors in Y direction). Equation: Y − ȳ = byx(X − x̄)</p>
+      <p><strong>X on Y:</strong> Use when Y is known and you want to predict X. This line minimises the sum of squared HORIZONTAL distances (errors in X direction). Equation: X − x̄ = bxy(Y − ȳ)</p>
+      <p><strong>Why can't you rearrange?</strong> Each line is built to minimise errors in a specific direction. Rearranging Y on X gives an equation that looks like X on Y algebraically, but still minimises vertical (not horizontal) errors. Using the wrong line gives incorrect predictions.</p>
+      <p><strong>Both lines pass through:</strong> (x̄, ȳ) — the point of means — always.</p>
+    </div>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+<h3>10-Mark Questions</h3>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">10 MARKS</span><h4>Explain ANOVA with example and ANOVA table.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">What is one-way ANOVA? Explain the procedure with a worked example.</div>
+    <div class="qa-answer">
+      <p><strong>What is ANOVA?</strong> Analysis of Variance (ANOVA) is a statistical technique used to test whether three or more group means are significantly different from each other — simultaneously, in one test.</p>
+      <p><strong>Why not multiple t-tests?</strong> If you test 3 groups with 3 t-tests, each at 5% error, the total accumulated error ≈ 14%. ANOVA keeps it exactly at 5%.</p>
+      <p><strong>Core idea — F ratio:</strong> ANOVA compares two sources of variation:</p>
+      <ul>
+        <li><strong>Between-group variance (MSC):</strong> How far apart are the group means from the overall mean? If groups truly differ, this will be large.</li>
+        <li><strong>Within-group variance (MSE):</strong> How much do values vary inside each group? This is random noise — always present.</li>
+      </ul>
+      <p><strong>F = MSC ÷ MSE.</strong> If F ≈ 1, groups are similar. If F >> 1, groups differ significantly.</p>
+      <p><strong>Hypotheses:</strong> H₀: μ₁ = μ₂ = μ₃ (all equal). H₁: At least one group mean differs.</p>
+      <p><strong>Worked Example:</strong> Three training programs, 4 employees each. Scores:</p>
+      <ul>
+        <li>Program 1: 70, 72, 69, 71 (Total=282)</li>
+        <li>Program 2: 65, 68, 66, 67 (Total=266)</li>
+        <li>Program 3: 75, 78, 74, 77 (Total=304)</li>
+      </ul>
+      <p>T=852, N=12, CF=852²/12=60492. SSC=182. SST=202. SSE=20.</p>
+      <table class="anova-table" style="margin:12px 0">
+        <thead><tr><th>Source</th><th>SS</th><th>df</th><th>MS</th><th>F</th></tr></thead>
+        <tbody>
+          <tr class="between"><td>Between</td><td>182</td><td>2</td><td>91</td><td rowspan="2" style="vertical-align:middle;font-weight:700;font-size:16px">40.99</td></tr>
+          <tr class="within"><td>Within</td><td>20</td><td>9</td><td>2.22</td></tr>
+          <tr class="total-row"><td>Total</td><td>202</td><td>11</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p>F critical (df1=2, df2=9, α=0.05) = 4.26. Since 40.99 > 4.26, <strong>Reject H₀. The three programs differ significantly.</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">10 MARKS</span><h4>Chi-square — explain both types with examples.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">Explain chi-square goodness of fit and independence test with worked examples.</div>
+    <div class="qa-answer">
+      <p><strong>What is chi-square?</strong> A test for categorical data (frequencies/counts) that compares observed frequencies against expected frequencies. Formula: χ² = Σ(O−E)²/E. Always right-tailed.</p>
+      <p><strong>Type 1 — Goodness of Fit:</strong> Tests if data fits a claimed distribution. One variable. df = k−1.</p>
+      <p>Example: A die rolled 120 times gives: 14,18,20,22,24,22. If fair, E=20 each. χ² = (−6)²/20 + (−2)²/20 + 0 + (2)²/20 + (4)²/20 + (2)²/20 = 1.8+0.2+0+0.2+0.8+0.2 = <strong>3.20</strong>. χ² critical (df=5) = 11.07. 3.20 &lt; 11.07 → Die is fair.</p>
+      <p><strong>Type 2 — Independence:</strong> Tests if two variables are related. Contingency table. df = (r−1)(c−1). E = (Row total × Col total) ÷ Grand total for each cell.</p>
+      <p>Example: 200 customers surveyed on gender vs brand preference. χ² = 2.02. Critical = 3.841. 2.02 &lt; 3.841 → Gender and brand preference are <strong>independent</strong>.</p>
+      <p><strong>Key difference:</strong> Same formula. Different method for computing E. Different df formula.</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">10 MARKS</span><h4>Complete hypothesis testing procedure with Z-test example.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">Explain the procedure for testing a hypothesis. A sample of 400 items from a normal population with mean 100 and SD 8 has sample mean 99. Test at 5%.</div>
+    <div class="qa-answer">
+      <p><strong>Procedure (6 steps):</strong></p>
+      <p><strong>Step 1 — State Hypotheses:</strong> H₀: μ = 100 (sample could come from this population). H₁: μ ≠ 100 (it could not). Two-tailed since no direction is specified.</p>
+      <p><strong>Step 2 — Level of Significance:</strong> α = 0.05. Two-tailed → α/2 = 0.025 each side.</p>
+      <p><strong>Step 3 — Critical Value:</strong> From Z table, area = 0.9750 → Z critical = ±1.96.</p>
+      <p><strong>Step 4 — Compute Test Statistic:</strong><br>
+      SE = σ/√n = 8/√400 = 8/20 = 0.4<br>
+      Z = (x̄ − μ₀)/SE = (99 − 100)/0.4 = −1/0.4 = <strong>−2.5</strong></p>
+      <p><strong>Step 5 — Decision:</strong> |Z calculated| = 2.5 > Z critical = 1.96 → <strong>Reject H₀.</strong></p>
+      <p><strong>Step 6 — Conclusion:</strong> At 5% level of significance, the sample does NOT appear to come from a population with mean 100. The deviation is statistically significant.</p>
+      <p><strong>Why does 1 mark (99 vs 100) lead to rejection?</strong> With n=400, SE = 0.4 is tiny. Sample means cluster tightly around the true mean. Getting x̄=99 (2.5 SEs away) is extremely unlikely if μ truly = 100.</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">10 MARKS</span><h4>Karl Pearson's correlation — derive and solve.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">Explain Karl Pearson's coefficient of correlation. Find r for the data: X: 1,5,3,2,1,1,7,3 and Y: 6,1,0,0,1,2,1,5.</div>
+    <div class="qa-answer">
+      <p><strong>Definition & Story:</strong> Pearson's r measures the strength and direction of linear relationship. It is the ratio of actual co-movement to maximum possible co-movement. r = Cov(X,Y)/(σx × σy).</p>
+      <p><strong>Formula:</strong> r = Σ(x−x̄)(y−ȳ) ÷ √[Σ(x−x̄)² × Σ(y−ȳ)²]</p>
+      <p><strong>Solution:</strong> x̄ = 23/8 = 2.875. ȳ = 16/8 = 2.</p>
+      <table class="comparison" style="font-size:13px">
+        <thead><tr><th>X</th><th>Y</th><th>x−x̄</th><th>y−ȳ</th><th>(x−x̄)(y−ȳ)</th><th>(x−x̄)²</th><th>(y−ȳ)²</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>6</td><td>−1.875</td><td>4</td><td>−7.5</td><td>3.516</td><td>16</td></tr>
+          <tr><td>5</td><td>1</td><td>2.125</td><td>−1</td><td>−2.125</td><td>4.516</td><td>1</td></tr>
+          <tr><td>3</td><td>0</td><td>0.125</td><td>−2</td><td>−0.25</td><td>0.016</td><td>4</td></tr>
+          <tr><td>2</td><td>0</td><td>−0.875</td><td>−2</td><td>1.75</td><td>0.766</td><td>4</td></tr>
+          <tr><td>1</td><td>1</td><td>−1.875</td><td>−1</td><td>1.875</td><td>3.516</td><td>1</td></tr>
+          <tr><td>1</td><td>2</td><td>−1.875</td><td>0</td><td>0</td><td>3.516</td><td>0</td></tr>
+          <tr><td>7</td><td>1</td><td>4.125</td><td>−1</td><td>−4.125</td><td>17.016</td><td>1</td></tr>
+          <tr><td>3</td><td>5</td><td>0.125</td><td>3</td><td>0.375</td><td>0.016</td><td>9</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="4">Total</td><td><strong>−10</strong></td><td><strong>32.875</strong></td><td><strong>36</strong></td></tr></tfoot>
+      </table>
+      <p>r = −10 ÷ √(32.875 × 36) = −10 ÷ √1183.5 = −10 ÷ 34.40 = <strong>−0.291</strong></p>
+      <p><strong>Interpretation:</strong> Weak negative correlation. Higher X values are slightly associated with lower Y values but the relationship is not strong.</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">10 MARKS</span><h4>t-Test — complete procedure with example.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">A soap company had mean sales of 140 dozens before an ad campaign. After the campaign, 26 shops showed mean 147 dozens with SD 16. Test if the advertisement is effective at 5%.</div>
+    <div class="qa-answer">
+      <p><strong>Why t-test?</strong> σ is unknown (only s=16 is given). n=26 &lt; 30. One sample t-test.</p>
+      <p><strong>Why right-tailed?</strong> "Effective" means sales INCREASED. Direction is upward. H₁: μ > 140.</p>
+      <p><strong>Step 1:</strong> H₀: μ = 140. H₁: μ > 140. (Right-tailed)</p>
+      <p><strong>Step 2:</strong> α = 0.05, right-tailed, df = n−1 = 25.</p>
+      <p><strong>Step 3:</strong> From t-table, t critical (df=25, 5%, one-tailed) = <strong>1.708</strong>.</p>
+      <p><strong>Step 4:</strong> SE = s/√n = 16/√26 = 16/5.099 = 3.138.<br>
+      t = (x̄ − μ₀)/SE = (147 − 140)/3.138 = 7/3.138 = <strong>2.231</strong></p>
+      <p><strong>Step 5:</strong> t calculated = 2.231 > t critical = 1.708 → <strong>Reject H₀.</strong></p>
+      <p><strong>Conclusion:</strong> At 5% level of significance, the advertisement is effective. The increase from 140 to 147 dozens is statistically significant and cannot be attributed to random chance.</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa-section">
+  <div class="qa-header"><span class="qa-mark">10 MARKS</span><h4>Spearman Rank Correlation — method and example.</h4></div>
+  <div class="qa-body">
+    <div class="qa-question">Explain Spearman's rank correlation. When is it preferred over Pearson's r? Solve for debenture prices X: 99.2,98.8,98.4,98.3,97.8,97.1,96.7 and share prices Y: 87.2,85.8,83.8,78.9,77.2,75.8,73.2.</div>
+    <div class="qa-answer">
+      <p><strong>When to prefer Spearman:</strong> When data is non-linear, when outliers are present, or when data is already in rank form. Spearman converts all values to ranks first — making it outlier-resistant. An extreme value like 500 just becomes rank 1.</p>
+      <p><strong>Formula:</strong> ρ = 1 − 6Σd²/n(n²−1)</p>
+      <p><strong>Solution:</strong> Rank both (1=highest). n=7.</p>
+      <table class="comparison" style="font-size:13px">
+        <thead><tr><th>Pair</th><th>X</th><th>Rank X</th><th>Y</th><th>Rank Y</th><th>d</th><th>d²</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>99.2</td><td>1</td><td>87.2</td><td>1</td><td>0</td><td>0</td></tr>
+          <tr><td>2</td><td>98.8</td><td>2</td><td>85.8</td><td>2</td><td>0</td><td>0</td></tr>
+          <tr><td>3</td><td>98.4</td><td>3</td><td>83.8</td><td>3</td><td>0</td><td>0</td></tr>
+          <tr><td>4</td><td>98.3</td><td>4</td><td>78.9</td><td>4</td><td>0</td><td>0</td></tr>
+          <tr><td>5</td><td>97.8</td><td>5</td><td>77.2</td><td>5</td><td>0</td><td>0</td></tr>
+          <tr><td>6</td><td>97.1</td><td>6</td><td>75.8</td><td>6</td><td>0</td><td>0</td></tr>
+          <tr><td>7</td><td>96.7</td><td>7</td><td>73.2</td><td>7</td><td>0</td><td>0</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="6"><strong>Σd²</strong></td><td><strong>0</strong></td></tr></tfoot>
+      </table>
+      <p>ρ = 1 − 6(0)/7(48) = 1 − 0 = <strong>+1.0</strong></p>
+      <p><strong>Interpretation:</strong> Perfect positive rank correlation. As debenture prices rank from highest to lowest, share prices rank in exactly the same order.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- QUICK REFERENCE CHEAT SHEET -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="chapter" style="border-top-color: var(--gold)">
+  <div class="chapter-number">Quick Reference</div>
+  <h2>Master Cheat Sheet</h2>
+</div>
+
+<h3>All Formulas in One Place</h3>
+<div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Test</th><th>Formula</th><th>When to Use</th><th>df</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pearson's r</strong></td><td>Σ(x−x̄)(y−ȳ) / √[Σ(x−x̄)²·Σ(y−ȳ)²]</td><td>Linear relationship between two variables</td><td>—</td></tr>
+      <tr><td><strong>Spearman ρ</strong></td><td>1 − 6Σd²/n(n²−1)</td><td>Non-linear, ordinal data, outliers present</td><td>—</td></tr>
+      <tr><td><strong>byx</strong></td><td>Σ(x−x̄)(y−ȳ) / Σ(x−x̄)²</td><td>X known → predict Y</td><td>—</td></tr>
+      <tr><td><strong>bxy</strong></td><td>Σ(x−x̄)(y−ȳ) / Σ(y−ȳ)²</td><td>Y known → predict X</td><td>—</td></tr>
+      <tr><td><strong>Z-test (means)</strong></td><td>(x̄ − μ₀) / (σ/√n)</td><td>σ known, n ≥ 30</td><td>—</td></tr>
+      <tr><td><strong>Z-test (prop)</strong></td><td>(p̂ − p₀) / √(p₀q₀/n)</td><td>Proportions, large sample</td><td>—</td></tr>
+      <tr><td><strong>One sample t</strong></td><td>(x̄ − μ₀) / (s/√n)</td><td>σ unknown, n &lt; 30</td><td>n−1</td></tr>
+      <tr><td><strong>Two sample t</strong></td><td>(x̄₁−x̄₂) / [Sp√(1/n₁+1/n₂)]</td><td>Two independent groups</td><td>n₁+n₂−2</td></tr>
+      <tr><td><strong>Paired t</strong></td><td>d̄ / (Sd/√n)</td><td>Same subjects, before/after</td><td>n−1</td></tr>
+      <tr><td><strong>ANOVA F</strong></td><td>MSC / MSE</td><td>3+ groups</td><td>(c−1, N−c)</td></tr>
+      <tr><td><strong>Chi-square</strong></td><td>Σ(O−E)²/E</td><td>Categorical data, frequencies</td><td>k−1 or (r−1)(c−1)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Critical Values to Memorise</h3>
+<div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Test</th><th>α = 0.05</th><th>α = 0.01</th></tr></thead>
+    <tbody>
+      <tr><td>Z — Two-tailed</td><td>±1.96</td><td>±2.576</td></tr>
+      <tr><td>Z — One-tailed</td><td>±1.645</td><td>±2.326</td></tr>
+      <tr><td>t (df=9) — Two-tailed</td><td>2.262</td><td>3.250</td></tr>
+      <tr><td>t (df=25) — One-tailed</td><td>1.708</td><td>2.485</td></tr>
+      <tr><td>χ² (df=1)</td><td>3.841</td><td>6.635</td></tr>
+      <tr><td>χ² (df=3)</td><td>7.815</td><td>11.345</td></tr>
+      <tr><td>χ² (df=5)</td><td>11.07</td><td>15.086</td></tr>
+      <tr><td>F (df1=2, df2=9)</td><td>4.26</td><td>8.02</td></tr>
+      <tr><td>F (df1=2, df2=12)</td><td>3.88</td><td>6.93</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Common Traps — Never Fall For These</h3>
+<div class="card-row">
+  <div class="card red">
+    <h5>Trap 1: Variance vs SD</h5>
+    <p>If problem gives <strong>variance = 4</strong>, then σ = √4 = 2. Always square root variance before using in SE formula. Variance ≠ Standard Deviation.</p>
+  </div>
+  <div class="card red">
+    <h5>Trap 2: SE formula</h5>
+    <p>SE = s/√<strong>n</strong> — NOT s/√(n−1). The n−1 lives only inside the s formula itself. Once s is computed, SE uses full n always.</p>
+  </div>
+  <div class="card red">
+    <h5>Trap 3: Sign of t</h5>
+    <p>For two-tailed test: compare |t calculated| vs t critical. Drop the sign. For one-tailed: sign matters directly. −4.2 > −2.262 is FALSE. −4.2 &lt; −2.262 is TRUE → reject.</p>
+  </div>
+  <div class="card red">
+    <h5>Trap 4: Two regression lines</h5>
+    <p>Never rearrange Y on X to predict X. Use the correct X on Y line. The shoe analogy: rearranging doesn't change which errors are minimised.</p>
+  </div>
+  <div class="card red">
+    <h5>Trap 5: One vs two tail</h5>
+    <p>"Effective", "increased", "at least" → right tail. "Decreased", "reduced", "at most" → left tail. "Different", "changed", "test the claim" → two tail. Read carefully.</p>
+  </div>
+  <div class="card red">
+    <h5>Trap 6: Chi-square E values</h5>
+    <p>Always verify: ΣO = ΣE and Σ(O−E) = 0. If either fails, your E values are wrong. Chi-square is always right-tailed — never one-tailed left.</p>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+
+<div style="text-align:center; padding: 40px 0; color: #666; font-family: 'JetBrains Mono', monospace; font-size: 13px;">
+  <div style="font-size:24px; margin-bottom:12px">📊</div>
+  <div>Statistics Master Revision Guide</div>
+  <div style="margin-top:4px; color: var(--gold)">All the best for your examination</div>
+</div>
+
+</div><!-- /wrapper -->
+
+</body>
+</html>
